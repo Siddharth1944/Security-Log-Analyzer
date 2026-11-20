@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Security Log Analyzer | SOC Dashboard</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h2>SECURITY MONITOR</h2>
+
+            <nav>
+                <a class="active" href="#dashboard">Dashboard</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#alerts">Security Alerts</a>
+                <a href="#login-activity">Login Activity</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                Monitoring Dashboard
+            </div>
+        </aside>
+
+        <main class="main-content" id="dashboard">
+
+            <header class="page-header">
+                <div>
+                    <h1>Security Dashboard</h1>
+                    <p>Monitor and analyze security events</p>
+                </div>
+
+                
+
+<div class="header-actions">
+
+    <div class="server-status">
+        <span class="status-dot"></span>
+        Backend Connected
+    </div>
+
+    <button id="runDetectionBtn" class="run-detection-btn">
+        Run Detection
+    </button>
+
+    <a href="/logout" class="logout-btn">
+        Logout
+    </a>
+
+</div>
+
+<p id="detectionMessage" role="status"></p>
+
+
+<p id="detectionMessage" role="status"></p>
+
+            </header>
+
+            <div id="errorMessage" class="error-message" hidden></div>
+
+            <!-- Statistics -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <h3>Total Alerts</h3>
+                    <p id="totalAlerts">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>HIGH Severity</h3>
+                    <p id="highAlerts">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>MEDIUM Severity</h3>
+                    <p id="mediumAlerts">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Open Alerts</h3>
+                    <p id="openAlerts">0</p>
+                </div>
+
+            </section>
+
+            <!-- Charts -->
+            <section id="analytics" class="charts">
+
+                <div class="chart-card">
+                    <h2>Alert Severity</h2>
+                    <div class="chart-container">
+                        <canvas id="severityChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Top Suspicious IPs</h2>
+                    <div class="chart-container">
+                        <canvas id="ipChart"></canvas>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Alerts -->
+            <section id="alerts" class="content-card">
+
+                <h2>Security Alert Management</h2>
+
+                <div class="controls">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search IP address..."
+                    >
+
+                    <select id="severityFilter">
+                        <option value="ALL">All Severities</option>
+                        <option value="HIGH">HIGH</option>
+                        <option value="MEDIUM">MEDIUM</option>
+                        <option value="LOW">LOW</option>
+                    </select>
+
+                    <select id="statusFilter">
+                        <option value="ALL">All Statuses</option>
+                        <option value="OPEN">OPEN</option>
+                        <option value="CLOSED">CLOSED</option>
+                    </select>
+
+                    <button id="refreshButton">Refresh</button>
+
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>IP Address</th>
+                                <th>Alert Type</th>
+                                <th>Attempts</th>
+                                <th>Severity</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="alertTableBody">
+                            <tr>
+                                <td colspan="6">Loading alerts...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="alertDetails" class="details-panel" hidden></div>
+
+            </section>
+
+            <!-- Login Activity -->
+            <section id="login-activity" class="content-card">
+                <h2>Recent Login Activity</h2>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Username</th>
+                                <th>IP Address</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="loginTableBody">
+                            <tr>
+                                <td colspan="4">Login records are not loaded yet.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer>
+                Security Log Analyzer | Educational SOC Monitoring Project
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- Load Chart.js before your JavaScript -->
+    <script src="/chart.umd.min.js"></script>
+    <script src="/script.js"></script>
+
+</body>
+</html>
